@@ -1,13 +1,16 @@
 package general;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class Main {
+public class Main implements ActionListener {
 	
-	JFrame VentanaMain = new JFrame("CEMPRODECA");
+	JFrame VentanaMain;
 	
 	public static void main(String[] args) {
 		
@@ -17,38 +20,58 @@ public class Main {
 	}
 	
 	public Main(){
+	CrearVentanaPrincipal();
+	}/*fin de constructor*/
+	
+	public void CrearVentanaPrincipal(){
 		
+		VentanaMain = new JFrame("CEMPRODECA");
 		VentanaMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		VentanaMain.setBounds(100, 100, 800, 400);
 		VentanaMain.setVisible(true);
-		JMenuBar menuBar = new JMenuBar();
-		VentanaMain.setJMenuBar(menuBar);
+		VentanaMain.setLayout(null);
 		
-		JMenu mnNuevo = new JMenu("Nuevo");
-		menuBar.add(mnNuevo);
+		JMenuBar barraDeMenu = new JMenuBar();
+		VentanaMain.setJMenuBar(barraDeMenu);
 		
-		JMenuItem mntmAgregarUnCliente = new JMenuItem("Agregar un Cliente");
-		mnNuevo.add(mntmAgregarUnCliente);
+		JMenu jmNuevo = new JMenu("Nuevo");
+		barraDeMenu.add(jmNuevo);
+				
+		JMenuItem jmiAgregarUnCliente = new JMenuItem("Agregar un Cliente");
+		jmiAgregarUnCliente.addActionListener(this);
+		jmNuevo.add(jmiAgregarUnCliente);
+				
+		JMenuItem jmiAgregarUnaOperacion = new JMenuItem("Agregar una Operacion");
+		jmiAgregarUnaOperacion.addActionListener(this);
+		jmNuevo.add(jmiAgregarUnaOperacion);
 		
-		JMenuItem mntmAgregarUnaOperacion = new JMenuItem("Agregar una Operacion");
-		mnNuevo.add(mntmAgregarUnaOperacion);
 		
-		JMenu Catalogos = new JMenu("Catalogos");
-		menuBar.add(Catalogos);
-		
-		JMenuItem mntmConsultaDeClientes = new JMenuItem("Consulta de Clientes");
-		mntmConsultaDeClientes.setToolTipText("Consultar un cliente por su nombre");
-		Catalogos.add(mntmConsultaDeClientes);
-		
-		JMenuItem mntmConsultaPorCedula = new JMenuItem("Consulta por Cedula");
-		mntmConsultaPorCedula.setToolTipText("Buscar un cliente por numero de cedula");
-		Catalogos.add(mntmConsultaPorCedula);
-		
-		JMenuItem mntmConsultaDeRecibos = new JMenuItem("Consulta de Recibos");
-		mntmConsultaDeRecibos.setToolTipText("Consultar un recibo por numero consecutivo");
-		Catalogos.add(mntmConsultaDeRecibos);
-		
+				
+		JMenu jmCatalogos = new JMenu("Catalogos");
+		barraDeMenu.add(jmCatalogos);
+				
+		JMenuItem jmiConsultaDeClientes = new JMenuItem("Consulta de Clientes");
+		jmiConsultaDeClientes.setToolTipText("Consultar un cliente por su nombre");
+		jmiConsultaDeClientes.addActionListener(this);
+		jmCatalogos.add(jmiConsultaDeClientes);
+				
+		JMenuItem jmiConsultaPorCedula = new JMenuItem("Consulta por Cedula");
+		jmiConsultaPorCedula.setToolTipText("Buscar un cliente por numero de cedula");
+		jmiConsultaPorCedula.addActionListener(this);
+		jmCatalogos.add(jmiConsultaPorCedula);
+				
+		JMenuItem jmiConsultaDeRecibos = new JMenuItem("Consulta de Recibos");
+		jmiConsultaDeRecibos.setToolTipText("Consultar un recibo por numero consecutivo");
+		jmiConsultaDeRecibos.addActionListener(this);
+		jmCatalogos.add(jmiConsultaDeRecibos);
 		VentanaMain.repaint();
-	}/*fin de constructor*/
+		}/*fin de crear ventanas*/
+
+	@Override
+	public void actionPerformed(ActionEvent evento) {
+		
+	}
 	
-}
+	
+	
+}/*fin de clase*/
