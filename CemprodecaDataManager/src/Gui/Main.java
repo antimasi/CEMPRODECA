@@ -1,4 +1,4 @@
-package general;
+package Gui;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;

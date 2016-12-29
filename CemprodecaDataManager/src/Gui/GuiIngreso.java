@@ -1,4 +1,4 @@
-package general;
+package Gui;
 
 public class GuiIngreso {
 

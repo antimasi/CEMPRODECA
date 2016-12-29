@@ -1,4 +1,4 @@
-package general;
+package Gui;
 
 import java.awt.CardLayout;
 
