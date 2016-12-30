@@ -1,9 +1,9 @@
 package Gui;
 
 import java.awt.CardLayout;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -13,12 +13,25 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
+import general.Persona;
+import general.conexionSQL;
 
-public class GuiConsultaCliente {
-	private JPanel panelConsultaCliente;
+public class GuiConsultaCliente implements ActionListener{
+	/*Atributos de clase*/
+	public JPanel panelConsultaCliente;
 	private JTextField tfCedula, tfNombre, tfMontoInicial, tfFondo, tfNombreDelFondo,
 	tfTasaDeInteres, tfPeriodicidadInteres, tfPeriodicidadAmortizacion;
 	private JTable jtRecibos, jtPagos;
+	private JButton jbAceptar;
+	
+	/*Relaciones entre clases*/
+	Persona persona;
+	conexionSQL con;
+	Main jfPrincipal;
+	public GuiConsultaCliente(Main jfPrincipal, conexionSQL con){
+		this.con = con;
+		this.jfPrincipal = jfPrincipal;
+	}
 	
 	public void GeneraVentana() {
 		
@@ -331,9 +344,19 @@ public class GuiConsultaCliente {
 		jtRecibos.getColumnModel().getColumn(12).setPreferredWidth(170);
 		spRecibos.setViewportView(jtRecibos);
 		
-		JButton jbAceptar = new JButton("Aceptar");
+		jbAceptar = new JButton("Aceptar");
+		jbAceptar.addActionListener(this);
 		jbAceptar.setBounds(323, 60, 96, 27);
 		panelConsultaCliente.add(jbAceptar);
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		
+		if(event.getSource() == jbAceptar){
+			jfPrincipal.QuitarPanel(panelConsultaCliente);
+		}
 		
 	}
 	

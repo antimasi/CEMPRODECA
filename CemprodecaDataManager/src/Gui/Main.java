@@ -10,6 +10,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import general.conexionSQL;
 
 public class Main implements ActionListener {
 	
@@ -18,13 +21,17 @@ public class Main implements ActionListener {
 	JMenuItem jmiAgregarUnCliente, jmiAgregarUnaOperacion,jmiConsultaDeClientes,
 	jmiConsultaPorCedula,jmiConsultaDeRecibos;
 	
+	conexionSQL con;
+	GuiConsultaCliente GCC;
+	static Main jfPrincipal;
+	
 	public static void main(String[] args) {
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {	
-					Main frame = new Main();
-					frame.CreaVentana();
+					jfPrincipal = new Main();
+					jfPrincipal.CreaVentana();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -34,6 +41,8 @@ public class Main implements ActionListener {
 	}/*fin de main*/
 	
 	public void CreaVentana(){
+		con = new conexionSQL();
+		GCC = new GuiConsultaCliente(jfPrincipal, con);
 		
 		VentanaMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		VentanaMain.setBounds(100, 100, 800, 400);
@@ -85,6 +94,14 @@ public class Main implements ActionListener {
 		
 	}/*fin de creacion de ventana*/
 	
+	public void PonerPanel(JPanel p){
+		VentanaMain.add(p);
+	}/*fin de poner panel*/
+	
+	public void QuitarPanel(JPanel p){
+		VentanaMain.remove(p);
+	}/*fin de quitar panel*/
+	
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 		
@@ -105,7 +122,7 @@ public class Main implements ActionListener {
 		}/*fin de consultar recibos*/
 		
 		if(evento.getSource() == jmiConsultaPorCedula){
-			
+			PonerPanel(GCC.panelConsultaCliente);
 		}/*fin de consultar por cedula*/
 		
 	}/*fin de eventos*/
