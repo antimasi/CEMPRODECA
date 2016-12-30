@@ -2,6 +2,7 @@ package Gui;
 
 import java.awt.CardLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -19,7 +20,7 @@ public class GuiConsultaCliente {
 	tfTasaDeInteres, tfPeriodicidadInteres, tfPeriodicidadAmortizacion;
 	private JTable jtRecibos, jtPagos;
 	
-	public JPanel GeneraVentana() {
+	public void GeneraVentana() {
 		
 		panelConsultaCliente = new JPanel();
 		panelConsultaCliente.setBounds(100, 100, 790, 400);
@@ -32,7 +33,7 @@ public class GuiConsultaCliente {
 		
 		tfCedula = new JTextField();
 		tfCedula.setBounds(60, 5, 114, 21);
-		tfCedula.setEditable(true);/*NO GUARDAR LA CEDULA EN ESTE CASO*/
+		tfCedula.setEditable(false);
 		panelConsultaCliente.add(tfCedula);
 		tfCedula.setColumns(10);
 		
@@ -46,7 +47,7 @@ public class GuiConsultaCliente {
 		
 		tfNombre = new JTextField();
 		tfNombre.setBounds(244, 5, 148, 21);
-		tfNombre.setEditable(true);/*NO GUARDAR EL NOMBRE*/
+		tfNombre.setEditable(false);
 		panelConsultaCliente.add(tfNombre);
 		tfNombre.setColumns(10);
 		
@@ -330,8 +331,10 @@ public class GuiConsultaCliente {
 		jtRecibos.getColumnModel().getColumn(12).setPreferredWidth(170);
 		spRecibos.setViewportView(jtRecibos);
 		
-		return panelConsultaCliente;
-
+		JButton jbAceptar = new JButton("Aceptar");
+		jbAceptar.setBounds(323, 60, 96, 27);
+		panelConsultaCliente.add(jbAceptar);
+		
 	}
 	
 }
