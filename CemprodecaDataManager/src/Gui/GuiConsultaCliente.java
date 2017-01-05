@@ -282,18 +282,19 @@ public class GuiConsultaCliente implements ActionListener{
 				"Cuota", "Fecha de pago", "Amortizacion", "Intereses", "Saldo"
 			}
 		) {
-			/**
-			 * 
-			 */
+			private static final long serialVersionUID = 1L;
+			
 			Class[] columnTypes = new Class[] {
 				Integer.class, String.class, Double.class, Double.class, Double.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
+			
 			boolean[] columnEditables = new boolean[] {
 				false, false, false, false, false
 			};
+			
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}

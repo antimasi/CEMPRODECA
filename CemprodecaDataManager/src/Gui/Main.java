@@ -1,5 +1,7 @@
 package Gui;
 
+import general.*;
+
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,8 +14,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import general.conexionSQL;
-
 public class Main implements ActionListener {
 	
 	JFrame VentanaMain = new JFrame("CEMPRODECA");
@@ -23,18 +23,17 @@ public class Main implements ActionListener {
 	
 	conexionSQL con;
 	GuiConsultaCliente GCC;
+	Impresion impresion;
 	private static Main jfPrincipal;
 	
 	public static void main(String[] args) {
 		jfPrincipal = new Main();
-		
 	}/*fin de main*/
 	
 	public Main(){
 	EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {	
-					
 					jfPrincipal.CreaVentana();
 					VentanaMain.repaint();
 				} catch (Exception e) {
@@ -62,10 +61,6 @@ public class Main implements ActionListener {
 						}/*fin de verificacion de salida*/
 				   }/*fin de windowClosing*/
 			});/*cierre personalizado para presion de X*/
-		
-		
-		
-		
 		
 		JMenuBar jmbPrincipal = new JMenuBar();
 		jmbPrincipal.setBounds(0,0,800,10);
