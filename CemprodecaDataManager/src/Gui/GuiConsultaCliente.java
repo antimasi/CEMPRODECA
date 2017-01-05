@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -36,7 +37,7 @@ public class GuiConsultaCliente implements ActionListener{
 	public void GeneraVentana() {
 		
 		panelConsultaCliente = new JPanel();
-		panelConsultaCliente.setBounds(100, 100, 790, 400);
+		panelConsultaCliente.setBounds(100, 100, 790, 399);
 		
 		panelConsultaCliente.setLayout(null);
 		panelConsultaCliente.setLayout(null);
@@ -354,10 +355,14 @@ public class GuiConsultaCliente implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		
-		if(event.getSource() == jbAceptar){
-			jfPrincipal.QuitarPanel(panelConsultaCliente);
-		}
 		
-	}
+		if(event.getSource() == jbAceptar){
+			
+			jfPrincipal.QuitarPanel(panelConsultaCliente);
+			panelConsultaCliente = null;
+						
+		}
+	jfPrincipal.VentanaMain.repaint();/*actualizacion constante de la ventana*/
+	}/*fin de actionPerformed*/
 	
 }

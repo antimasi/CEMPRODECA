@@ -23,31 +23,37 @@ public class Main implements ActionListener {
 	
 	conexionSQL con;
 	GuiConsultaCliente GCC;
-	static Main jfPrincipal;
+	private static Main jfPrincipal;
 	
 	public static void main(String[] args) {
+		jfPrincipal = new Main();
 		
-		EventQueue.invokeLater(new Runnable() {
+	}/*fin de main*/
+	
+	public Main(){
+	EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {	
-					jfPrincipal = new Main();
+					
 					jfPrincipal.CreaVentana();
+					VentanaMain.repaint();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-		
-	}/*fin de main*/
+	}
 	
 	public void CreaVentana(){
 		con = new conexionSQL();
 		GCC = new GuiConsultaCliente(jfPrincipal, con);
 		
-		VentanaMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		VentanaMain.setBounds(100, 100, 800, 400);
+		VentanaMain.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);/*cierre manual de ventana controlado por el evento*/
+		
+		VentanaMain.setBounds(100, 100, 805, 405);
 		VentanaMain.setVisible(true);
 		VentanaMain.addWindowListener(new WindowAdapter() {
+			
 			public void windowClosing(WindowEvent e) {
 					/*se debe cerrar el Stream hacia la database aqui por si le dan a la x*/
 					int op = JOptionPane.showConfirmDialog(null, "Desea Salir?", "Verificacion de cierre",JOptionPane.YES_NO_OPTION);
@@ -56,6 +62,10 @@ public class Main implements ActionListener {
 						}/*fin de verificacion de salida*/
 				   }/*fin de windowClosing*/
 			});/*cierre personalizado para presion de X*/
+		
+		
+		
+		
 		
 		JMenuBar jmbPrincipal = new JMenuBar();
 		jmbPrincipal.setBounds(0,0,800,10);
@@ -94,9 +104,9 @@ public class Main implements ActionListener {
 		
 	}/*fin de creacion de ventana*/
 	
-	public void PonerPanel(JPanel p){
-		VentanaMain.add(p);
-	}/*fin de poner panel*/
+	
+		
+	
 	
 	public void QuitarPanel(JPanel p){
 		VentanaMain.remove(p);
@@ -104,7 +114,7 @@ public class Main implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent evento) {
-		
+		VentanaMain.repaint();
 		if(evento.getSource() == jmiAgregarUnCliente){
 			
 		}/*fin de agregar un cliente*/
@@ -122,7 +132,9 @@ public class Main implements ActionListener {
 		}/*fin de consultar recibos*/
 		
 		if(evento.getSource() == jmiConsultaPorCedula){
-			PonerPanel(GCC.panelConsultaCliente);
+			GCC.GeneraVentana();
+			VentanaMain.add(GCC.panelConsultaCliente);
+			
 		}/*fin de consultar por cedula*/
 		
 	}/*fin de eventos*/
