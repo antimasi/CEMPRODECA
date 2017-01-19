@@ -43,6 +43,6 @@ public class conexionSQL {
 	}/*fin de carga de tabla de pagos*/
 	
 	public void CargarRecibosAlaDB(){
-		
+		//
 	}/*fin de carga de recibos*/
 }
