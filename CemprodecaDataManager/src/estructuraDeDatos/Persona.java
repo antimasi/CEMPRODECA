@@ -1,4 +1,4 @@
-package general;
+package estructuraDeDatos;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -6,7 +6,8 @@ import java.util.Date;
 public class Persona {
 
 	/*BD PERSONA contiene todos estos datos*/
-	/*se busca por apellidoyNombre o cedula seg�n sea el caso*/
+	/*se busca por apellidoyNombre o cedula segun sea el caso*/
+	
 	String apellidoyNombre;
 	String cedula;
 	String codigoDeUbicacion;
@@ -27,6 +28,6 @@ public class Persona {
 	
 	
 	/*BD OPERACION contiene mas de una, arraylist*/
-	ArrayList<Operaciones> numeroDeOperacion;
+	ArrayList<Operaciones> operaciones;
 	
 }/*fin de clase*/

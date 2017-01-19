@@ -1,4 +1,4 @@
-package general;
+package estructuraDeDatos;
 
 public class Impresion {
 

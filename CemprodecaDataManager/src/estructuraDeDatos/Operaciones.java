@@ -1,8 +1,9 @@
-package general;
+package estructuraDeDatos;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Operaciones {
+	
 	String numeroDeOperacion;
 	Date fechaDeFormalizacion;
 	Date fechaDeCancelacion;
@@ -15,7 +16,7 @@ public class Operaciones {
 	
 	ArrayList<Recibos> recibos;
 	
-	public Operaciones(Date fechaDeFormalizacion, Date fechaDeCancelacion,
+	public void setOperaciones(Date fechaDeFormalizacion, Date fechaDeCancelacion,
 			double montoDelPrestmo, double taza, double pagoMensual,
 			boolean activo) {
 		
@@ -28,10 +29,15 @@ public class Operaciones {
 		
 	}/*fin de constructor*/
 	
-	/*operaciones con la tabla de pagos*/
+	
+	public void setTablaDePagos(ArrayList<TablaDePagos> t){
+		this.tablaDePagos = t;
+	}/*fin llenado tabla de pagos*/
 	
 	
-	
+	public void setRecibos(ArrayList<Recibos> r){
+		this.recibos = r;
+	}/*fin de llenado de recibos*/
 	
 	
 }/*fin de clase*/

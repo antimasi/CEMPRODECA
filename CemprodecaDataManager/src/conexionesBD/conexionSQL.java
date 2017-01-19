@@ -1,9 +1,12 @@
-package general;
+package conexionesBD;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import estructuraDeDatos.Recibos;
+import estructuraDeDatos.TablaDePagos;
 
 public class conexionSQL {
 	String BaseDeDatos = "";

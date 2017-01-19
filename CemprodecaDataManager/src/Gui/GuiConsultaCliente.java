@@ -14,8 +14,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
-import general.Persona;
-import general.conexionSQL;
+
+import conexionesBD.conexionSQL;
+import estructuraDeDatos.Persona;
 
 public class GuiConsultaCliente implements ActionListener{
 	/*Atributos de clase*/
