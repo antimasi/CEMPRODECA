@@ -16,7 +16,7 @@ public class conexionSQL {
 	
 	Connection con = null;
 	
-	public void conectar(){
+	public Connection ObtenerConexion(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver"); 
 			con = DriverManager.getConnection(URL,User,Password);
@@ -26,6 +26,8 @@ public class conexionSQL {
 	      }catch(ClassNotFoundException e){
 	         System.out.println(e);
 	      }
+		
+		return con;
 	}
 	
 	
