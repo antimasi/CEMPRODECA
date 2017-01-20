@@ -6,7 +6,7 @@ public class LogicaDeNegocioDePersona {
 
 	Persona LaPersona;
 	
-	public Persona BuscarPersonaPorCedula(String laCedula)
+	public Persona BuscarPersonaPorCedula(Persona LaPersona)
 	{
 	Persona laPersonaBuscada;
 	
