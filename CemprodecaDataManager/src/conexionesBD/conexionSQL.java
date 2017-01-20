@@ -29,5 +29,7 @@ public class conexionSQL {
 	}
 	
 	
-
+	public void CargarRecibosAlaDB(){
+		//
+	}/*fin de carga de recibos*/
 }
