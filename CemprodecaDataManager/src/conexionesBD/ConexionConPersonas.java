@@ -22,9 +22,7 @@ public class ConexionConPersonas {
             
              String consultadeinsercion="INSERT INTO Personas () VALUES ()" ; // hay q poner lo campos a llenar
              PreparedStatement consulta = accesoABaseDeDatos.prepareStatement(consultadeinsercion);
-             //falta poner los campos 
-           //  pstm.setString(1,elTelefono.getTelefono());
-           //  pstm.setInt(2,elTelefono.getIdcontacto());
+             
              consulta.execute();
              consulta.close();
                   
@@ -51,20 +49,20 @@ public class ConexionConPersonas {
 
 	laPersonaBuscada.setApellidoyNombre(resultadoDeLaConsulta.getString(1));
 	laPersonaBuscada.setApodo(resultadoDeLaConsulta.getString(2));
-	//laPersonaBuscada.setCantidadDeVeces(resultadoDeLaConsulta.getString(3)); falta pasar esto de string a char
+	laPersonaBuscada.setCantidadDeVeces(resultadoDeLaConsulta.getString(3).charAt(0));
 	laPersonaBuscada.setCedula(resultadoDeLaConsulta.getString(4));
 	laPersonaBuscada.setCelular(resultadoDeLaConsulta.getString(5));
 	laPersonaBuscada.setCodigoDeOcupacion(resultadoDeLaConsulta.getString(6));
 	laPersonaBuscada.setCodigoDeUbicacion(resultadoDeLaConsulta.getString(7));
-	//laPersonaBuscada.setCompleta(completa);  pasar de string a char
+	laPersonaBuscada.setCompleta(resultadoDeLaConsulta.getString(8).charAt(0));  
 	laPersonaBuscada.setDireccion(resultadoDeLaConsulta.getString(9));
-	//LaPersonaBuscada.setEducacion(resultadoDeLaConsulta.getString(10)); pasar de string a char
-	//laPersonaBuscada.setEstadoCivil(resultadoDeLaConsulta.getString(11)); pasar de string a char
+	laPersonaBuscada.setEducacion(resultadoDeLaConsulta.getString(10).charAt(0)); 
+	laPersonaBuscada.setEstadoCivil(resultadoDeLaConsulta.getString(11).charAt(0)); 
 	laPersonaBuscada.setFechaDeNacimiento(resultadoDeLaConsulta.getDate(12));
-	//laPersonaBuscada.setNacionalidad(resultadoDeLaConsulta.getCharacterStream(13));pasar de string a char
+	laPersonaBuscada.setNacionalidad(resultadoDeLaConsulta.getString(13).charAt(0));
 	laPersonaBuscada.setNombreDelConyugue(resultadoDeLaConsulta.getString(14));
 	laPersonaBuscada.setNombreDeProfesion(resultadoDeLaConsulta.getString(15));
-	//laPersonaBuscada.setSexo(resultadoDeLaConsulta.getString(16)); pasar de string a char
+	laPersonaBuscada.setSexo(resultadoDeLaConsulta.getString(16).charAt(0)); 
 	laPersonaBuscada.setTelefono(resultadoDeLaConsulta.getString(17));
 	
 	
