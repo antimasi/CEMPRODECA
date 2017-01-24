@@ -262,11 +262,11 @@ public class GuiConsultaCliente implements ActionListener{
 		panelConsultaCliente.add(panel);
 		panel.setLayout(new CardLayout(0, 0));
 		
-		JTabbedPane tpPestañas = new JTabbedPane(JTabbedPane.TOP);
-		panel.add(tpPestañas, "name_6833940426624");
+		JTabbedPane tpPestagnas = new JTabbedPane(JTabbedPane.TOP);
+		panel.add(tpPestagnas, "name_6833940426624");
 		
 		JPanel jpTablaPagos = new JPanel();
-		tpPestañas.addTab("Tabla de Pagos", null, jpTablaPagos, null);
+		tpPestagnas.addTab("Tabla de Pagos", null, jpTablaPagos, null);
 		jpTablaPagos.setLayout(null);
 		
 		JScrollPane spPagos = new JScrollPane();
@@ -307,7 +307,7 @@ public class GuiConsultaCliente implements ActionListener{
 		spPagos.setViewportView(jtPagos);
 		
 		JPanel jpRecibos = new JPanel();
-		tpPestañas.addTab("Tabla de Recibos", null, jpRecibos, null);
+		tpPestagnas.addTab("Tabla de Recibos", null, jpRecibos, null);
 		jpRecibos.setLayout(null);
 		
 		JScrollPane spRecibos = new JScrollPane();
@@ -324,6 +324,7 @@ public class GuiConsultaCliente implements ActionListener{
 				"OPD", "Cuota", "Fecha de Cuota", "Fecha de pago", "Amortizacion", "Amortizacion Pendiente", "Intereses", "Intereses pendientes", "Morosidad", "Poliza", "Tipo de pago", "Monto pagado", "Saldo"
 			}
 		) {
+			private static final long serialVersionUID = -99333533613230681L;
 			Class[] columnTypes = new Class[] {
 				Integer.class, Object.class, String.class, String.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Integer.class, Double.class, Double.class
 			};
