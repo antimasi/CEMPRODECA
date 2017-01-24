@@ -262,11 +262,11 @@ public class GuiConsultaCliente implements ActionListener{
 		panelConsultaCliente.add(panel);
 		panel.setLayout(new CardLayout(0, 0));
 		
-		JTabbedPane tpPestaÃ±as = new JTabbedPane(JTabbedPane.TOP);
-		panel.add(tpPestaÃ±as, "name_6833940426624");
+		JTabbedPane tpPestañas = new JTabbedPane(JTabbedPane.TOP);
+		panel.add(tpPestañas, "name_6833940426624");
 		
 		JPanel jpTablaPagos = new JPanel();
-		tpPestaÃ±as.addTab("Tabla de Pagos", null, jpTablaPagos, null);
+		tpPestañas.addTab("Tabla de Pagos", null, jpTablaPagos, null);
 		jpTablaPagos.setLayout(null);
 		
 		JScrollPane spPagos = new JScrollPane();
@@ -307,7 +307,7 @@ public class GuiConsultaCliente implements ActionListener{
 		spPagos.setViewportView(jtPagos);
 		
 		JPanel jpRecibos = new JPanel();
-		tpPestaÃ±as.addTab("Tabla de Recibos", null, jpRecibos, null);
+		tpPestañas.addTab("Tabla de Recibos", null, jpRecibos, null);
 		jpRecibos.setLayout(null);
 		
 		JScrollPane spRecibos = new JScrollPane();
