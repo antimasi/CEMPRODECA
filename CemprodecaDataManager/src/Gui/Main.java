@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import conexionesBD.conexionSQL;
 import estructuraDeDatos.*;
+import impresion.ImpresionDeRecibos;
 
 public class Main implements ActionListener {
 	
@@ -24,7 +25,7 @@ public class Main implements ActionListener {
 	
 	conexionSQL con;
 	GuiConsultaCliente GCC;
-	Impresion impresion;
+	ImpresionDeRecibos impresion;
 	private static Main jfPrincipal;
 	
 	public static void main(String[] args) {

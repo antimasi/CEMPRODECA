@@ -1,6 +1,6 @@
-package estructuraDeDatos;
+package impresion;
 
-public class Impresion {
+public class ImpresionDeRecibos {
 
 	public boolean Entrada(String imprimeEsto){
 		
