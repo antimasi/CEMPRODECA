@@ -101,10 +101,6 @@ public class Main implements ActionListener {
 		
 	}/*fin de creacion de ventana*/
 	
-	
-		
-	
-	
 	public void QuitarPanel(JPanel p){
 		VentanaMain.remove(p);
 	}/*fin de quitar panel*/
@@ -131,7 +127,7 @@ public class Main implements ActionListener {
 		if(evento.getSource() == jmiConsultaPorCedula){
 			GCC.GeneraVentana();
 			VentanaMain.add(GCC.panelConsultaCliente);
-			
+			VentanaMain.repaint();
 		}/*fin de consultar por cedula*/
 		
 	}/*fin de eventos*/
