@@ -20,7 +20,7 @@ public class ConexionConPersonas {
         
         try {
             
-             String consultadeinsercion="INSERT INTO Personas () VALUES ()" ; // hay q poner lo campos a llenar
+             String consultadeinsercion="INSERT INTO Personas VALUES ()" ; // hay q poner lo campos a llenar
              PreparedStatement consulta = accesoABaseDeDatos.prepareStatement(consultadeinsercion);
              
              consulta.execute();
