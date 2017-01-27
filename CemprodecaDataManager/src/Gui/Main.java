@@ -20,8 +20,8 @@ public class Main implements ActionListener {
 	
 	JFrame VentanaMain = new JFrame("CEMPRODECA");
 	
-	JMenuItem jmiAgregarUnCliente, jmiAgregarUnaOperacion,jmiConsultaDeClientes,
-	jmiConsultaPorCedula,jmiConsultaDeRecibos;
+	JMenuItem jmiAgregarUnCliente, jmiAgregarUnaOperacion, jmiConsultaDeClientes,
+	jmiConsultaPorCedula, jmiConsultaDeRecibos, jmiSalir;
 	
 	conexionSQL con;
 	GuiConsultaCliente GCC;
@@ -51,7 +51,7 @@ public class Main implements ActionListener {
 		
 		VentanaMain.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);/*cierre manual de ventana controlado por el evento*/
 		
-		VentanaMain.setBounds(100, 100, 805, 405);
+		VentanaMain.setBounds(100, 100, 800, 400);
 		VentanaMain.setVisible(true);
 		VentanaMain.addWindowListener(new WindowAdapter() {
 			
@@ -80,6 +80,11 @@ public class Main implements ActionListener {
 		jmiAgregarUnaOperacion.addActionListener(this);
 		jmNuevo.add(jmiAgregarUnaOperacion);
 		
+		jmiSalir = new JMenuItem("Salir");
+		jmiSalir.setToolTipText("Cierra el programa");
+		jmiSalir.addActionListener(this);
+		jmNuevo.add(jmiSalir);
+		
 		JMenu Catalogos = new JMenu("Catalogos");
 		jmbPrincipal.add(Catalogos);
 		
@@ -97,7 +102,6 @@ public class Main implements ActionListener {
 		jmiConsultaDeRecibos.setToolTipText("Consultar un recibo por numero consecutivo");
 		jmiConsultaDeClientes.addActionListener(this);
 		Catalogos.add(jmiConsultaDeRecibos);
-		
 		
 	}/*fin de creacion de ventana*/
 	
@@ -129,6 +133,13 @@ public class Main implements ActionListener {
 			VentanaMain.add(GCC.panelConsultaCliente);
 			VentanaMain.repaint();
 		}/*fin de consultar por cedula*/
+		
+		if(evento.getSource() == jmiSalir){
+			int op = JOptionPane.showConfirmDialog(null, "Desea Salir?", "Verificacion de cierre",JOptionPane.YES_NO_OPTION);
+			if(op == JOptionPane.YES_OPTION){
+				System.exit(0);
+			}/*fin de verificacion de salida*/
+		}/*fin de boton de salida*/
 		
 	}/*fin de eventos*/
 
