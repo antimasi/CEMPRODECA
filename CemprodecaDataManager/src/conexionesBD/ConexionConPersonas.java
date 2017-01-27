@@ -44,29 +44,30 @@ public class ConexionConPersonas {
 	        String registro=null;
 	      
 	        try {
-	        	 PreparedStatement consulta= accesoABaseDeDatos.prepareStatement("Select from Personas where cedula="+Cedula);
+	        	 PreparedStatement consulta= accesoABaseDeDatos.prepareStatement("Select `apenom_persona`,"
+	        	 		+ "`cedula_persona`,`ubi`, `direc`, `fec_nac_persona`,`sexo_persona`,"
+	        	 		+ "`educ`,`completa`, `estciv`, `n_veces`, `cl_ocup`, `prof_ofic`, `telefono`,"
+	        	 		+ "`conyugue`, `nacional`, `conocidocomo` from Personas where cedula="+Cedula);
 	             ResultSet resultadoDeLaConsulta=consulta.executeQuery();
-
+    laPersonaBuscada=new Persona();
 	laPersonaBuscada.setApellidoyNombre(resultadoDeLaConsulta.getString(1));
-	laPersonaBuscada.setApodo(resultadoDeLaConsulta.getString(2));
-	laPersonaBuscada.setCantidadDeVeces(resultadoDeLaConsulta.getString(3).charAt(0));
-	laPersonaBuscada.setCedula(resultadoDeLaConsulta.getString(4));
-	laPersonaBuscada.setCelular(resultadoDeLaConsulta.getString(5));
-	laPersonaBuscada.setCodigoDeOcupacion(resultadoDeLaConsulta.getString(6));
-	laPersonaBuscada.setCodigoDeUbicacion(resultadoDeLaConsulta.getString(7));
-	laPersonaBuscada.setCompleta(resultadoDeLaConsulta.getString(8).charAt(0));  
+	laPersonaBuscada.setCedula(resultadoDeLaConsulta.getString(2));
+	laPersonaBuscada.setCodigoDeUbicacion(resultadoDeLaConsulta.getString(3));
 	laPersonaBuscada.setDireccion(resultadoDeLaConsulta.getString(9));
-	laPersonaBuscada.setEducacion(resultadoDeLaConsulta.getString(10).charAt(0)); 
-	laPersonaBuscada.setEstadoCivil(resultadoDeLaConsulta.getString(11).charAt(0)); 
 	laPersonaBuscada.setFechaDeNacimiento(resultadoDeLaConsulta.getDate(12));
-	laPersonaBuscada.setNacionalidad(resultadoDeLaConsulta.getString(13).charAt(0));
-	laPersonaBuscada.setNombreDelConyugue(resultadoDeLaConsulta.getString(14));
-	laPersonaBuscada.setNombreDeProfesion(resultadoDeLaConsulta.getString(15));
 	laPersonaBuscada.setSexo(resultadoDeLaConsulta.getString(16).charAt(0)); 
-	laPersonaBuscada.setTelefono(resultadoDeLaConsulta.getString(17));
+	laPersonaBuscada.setEducacion(resultadoDeLaConsulta.getString(10).charAt(0)); 
+	laPersonaBuscada.setCompleta(resultadoDeLaConsulta.getString(8).charAt(0));
+	laPersonaBuscada.setEstadoCivil(resultadoDeLaConsulta.getString(11).charAt(0));
+	laPersonaBuscada.setCantidadDeVeces(resultadoDeLaConsulta.getString(3).charAt(0));
+	laPersonaBuscada.setCodigoDeOcupacion(resultadoDeLaConsulta.getString(6));
+	laPersonaBuscada.setNombreDeProfesion(resultadoDeLaConsulta.getString(15));
+	laPersonaBuscada.setTelefono(resultadoDeLaConsulta.getString(17));	
+	laPersonaBuscada.setNombreDelConyugue(resultadoDeLaConsulta.getString(14));
+	laPersonaBuscada.setNacionalidad(resultadoDeLaConsulta.getString(13).charAt(0));
+	laPersonaBuscada.setApodo(resultadoDeLaConsulta.getString(2));
 	
-	
-	
+	//laPersonaBuscada.setCelular(resultadoDeLaConsulta.getString(5));
 	
 	        } catch (Exception e) {
 	             JOptionPane.showMessageDialog(null, e.getLocalizedMessage());
