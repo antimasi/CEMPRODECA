@@ -47,7 +47,7 @@ public class ConexionConPersonas {
 	        	 PreparedStatement consulta= accesoABaseDeDatos.prepareStatement("Select `apenom_persona`,"
 	        	 		+ "`cedula_persona`,`ubi`, `direc`, `fec_nac_persona`,`sexo_persona`,"
 	        	 		+ "`educ`,`completa`, `estciv`, `n_veces`, `cl_ocup`, `prof_ofic`, `telefono`,"
-	        	 		+ "`conyugue`, `nacional`, `conocidocomo` from Personas where cedula="+Cedula);
+	        	 		+ "`conyugue`, `nacional`, `conocidocomo` from Personas where cedula_persona="+Cedula);
 	             ResultSet resultadoDeLaConsulta=consulta.executeQuery();
     laPersonaBuscada=new Persona();
 	laPersonaBuscada.setApellidoyNombre(resultadoDeLaConsulta.getString(1));
