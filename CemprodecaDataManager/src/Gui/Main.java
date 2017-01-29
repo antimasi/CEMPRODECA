@@ -131,6 +131,7 @@ public class Main implements ActionListener {
 		if(evento.getSource() == jmiConsultaPorCedula){
 			GCC.GeneraVentana();
 			VentanaMain.add(GCC.panelConsultaCliente);
+			VentanaMain.setBounds(100,100,800,420);
 			VentanaMain.repaint();
 		}/*fin de consultar por cedula*/
 		

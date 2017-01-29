@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -208,13 +209,41 @@ public class GuiConsultaCliente implements ActionListener{
 		
 	}/*fin de genera ventana*/
 
+	public void LiberadorDeMemoria(){
+		panelConsultaCliente = null;
+		tfApellidoYNombre = null;
+		tfCedula = null;
+		jtOperaciones = null;
+		jtTablaDePagos = null;
+		jtTablaDeRecibos = null;
+		btnNuevaConsulta = null;
+		btnRegresar = null;
+		btnEmitirRecibo = null;
+		btnImprimirTablas = null;
+	}/*apunta todo a null para ahorrar algo de ram*/
+	
+	public void ConsultaElCliente(String Cedula){
+		/*se traen los datos nuevos de persona*/
+		tfApellidoYNombre.setText(persona.apellidoyNombre);/*nuevo nombre de persona*/
+		tfCedula.setText(persona.cedula);
+		
+	}/*fin de consulta cliente*/
 	@Override
-	public void actionPerformed(ActionEvent event) {
+	public void actionPerformed(ActionEvent evento) {
 		
+		if(evento.getSource() == btnNuevaConsulta){
+			String cedula = JOptionPane.showInputDialog("Ingrese el numero de cedula del cliente a consultar");
+			/*se envia el string a la bd*/
+			/*se carga la informacion nueva de los tf*/
+			/*se carga la informacion nueva de las tablas*/
+		}/*fin de nueva consulta*/
 		
-		if(event.getSource() == btnRegresar){
+		if(evento.getSource() == btnRegresar){
 			jfPrincipal.QuitarPanel(panelConsultaCliente);
-			panelConsultaCliente = null;
+			jfPrincipal.VentanaMain.setBounds(100, 100, 800, 400);
+			
+			LiberadorDeMemoria();
+			
 		}/*fin de evento regresar*/
 		
 	jfPrincipal.VentanaMain.repaint();/*actualizacion constante de la ventana*/
