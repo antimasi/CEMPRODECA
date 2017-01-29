@@ -1,18 +1,20 @@
 package Gui;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import conexionesBD.conexionSQL;
@@ -21,351 +23,230 @@ import estructuraDeDatos.Persona;
 public class GuiConsultaCliente implements ActionListener{
 	/*Atributos de clase*/
 	public JPanel panelConsultaCliente;
-	private JTextField tfCedula, tfNombre, tfMontoInicial, tfFondo, tfNombreDelFondo,
-	tfTasaDeInteres, tfPeriodicidadInteres, tfPeriodicidadAmortizacion;
-	private JTable jtRecibos, jtPagos;
-	private JButton jbAceptar;
+	
+	private JTextField tfApellidoYNombre, tfCedula;
+	
+	private JTable jtOperaciones, jtTablaDeRecibos, jtTablaDePagos;
+	
+	private JButton btnNuevaConsulta, btnRegresar, btnEmitirRecibo, btnImprimirTablas;
 	
 	/*Relaciones entre clases*/
 	Persona persona;
 	conexionSQL con;
 	Main jfPrincipal;
+	
 	public GuiConsultaCliente(Main jfPrincipal, conexionSQL con){
 		this.con = con;
 		this.jfPrincipal = jfPrincipal;
 	}
 	
 	public void GeneraVentana() {
-		
 		panelConsultaCliente = new JPanel();
-		panelConsultaCliente.setBounds(100, 100, 790, 399);
+		panelConsultaCliente.setBorder(new EmptyBorder(5, 5, 5, 5));
+		panelConsultaCliente.setLayout(null);
 		
-		panelConsultaCliente.setLayout(null);
-		panelConsultaCliente.setLayout(null);
+		JPanel jpDatosCliente = new JPanel();
+		jpDatosCliente.setBounds(12, 0, 774, 124);
+		panelConsultaCliente.add(jpDatosCliente);
+		jpDatosCliente.setLayout(null);
+		
+		JLabel lblCliente = new JLabel("Cliente:");
+		lblCliente.setBounds(12, 12, 51, 17);
+		jpDatosCliente.add(lblCliente);
+		
+		tfApellidoYNombre = new JTextField();
+		tfApellidoYNombre.setBounds(70, 10, 254, 21);
+		jpDatosCliente.add(tfApellidoYNombre);
+		tfApellidoYNombre.setColumns(10);
+		
 		JLabel lblCedula = new JLabel("Cedula:");
-		lblCedula.setBounds(21, 7, 40, 17);
-		panelConsultaCliente.add(lblCedula);
+		lblCedula.setBounds(339, 12, 51, 17);
+		jpDatosCliente.add(lblCedula);
 		
 		tfCedula = new JTextField();
-		tfCedula.setBounds(60, 5, 114, 21);
-		tfCedula.setEditable(false);
-		panelConsultaCliente.add(tfCedula);
+		tfCedula.setBounds(399, 10, 149, 21);
+		jpDatosCliente.add(tfCedula);
 		tfCedula.setColumns(10);
 		
-		JLabel label = new JLabel("");
-		label.setBounds(218, 15, 0, 0);
-		panelConsultaCliente.add(label);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(10, 35, 755, 80);
+		jpDatosCliente.add(scrollPane);
 		
-		JLabel lbNombre = new JLabel("Nombre:");
-		lbNombre.setBounds(192, 7, 45, 17);
-		panelConsultaCliente.add(lbNombre);
-		
-		tfNombre = new JTextField();
-		tfNombre.setBounds(244, 5, 148, 21);
-		tfNombre.setEditable(false);
-		panelConsultaCliente.add(tfNombre);
-		tfNombre.setColumns(10);
-		
-		JLabel label_1 = new JLabel("");
-		label_1.setBounds(392, 15, 0, 0);
-		panelConsultaCliente.add(label_1);
-		
-		JLabel lblMontoInicial = new JLabel("Monto Inicial:");
-		lblMontoInicial.setBounds(397, 7, 74, 17);
-		panelConsultaCliente.add(lblMontoInicial);
-		
-		JLabel label_2 = new JLabel("");
-		label_2.setBounds(476, 15, 0, 0);
-		panelConsultaCliente.add(label_2);
-		
-		tfMontoInicial = new JTextField();
-		tfMontoInicial.setBounds(481, 5, 114, 21);
-		tfMontoInicial.setEditable(false);
-		panelConsultaCliente.add(tfMontoInicial);
-		tfMontoInicial.setColumns(10);
-		
-		JLabel label_3 = new JLabel("");
-		label_3.setBounds(600, 15, 0, 0);
-		panelConsultaCliente.add(label_3);
-		
-		JLabel label_4 = new JLabel("");
-		label_4.setBounds(605, 15, 0, 0);
-		panelConsultaCliente.add(label_4);
-		
-		JLabel label_5 = new JLabel("");
-		label_5.setBounds(733, 15, 0, 0);
-		panelConsultaCliente.add(label_5);
-		
-		JLabel lblFondo = new JLabel("Fondo:");
-		lblFondo.setBounds(476, 36, 44, 17);
-		panelConsultaCliente.add(lblFondo);
-		
-		JLabel label_6 = new JLabel("");
-		label_6.setBounds(228, 41, 0, 0);
-		panelConsultaCliente.add(label_6);
-		
-		tfFondo = new JTextField();
-		tfFondo.setBounds(515, 34, 40, 21);
-		tfFondo.setEditable(false);
-		panelConsultaCliente.add(tfFondo);
-		tfFondo.setColumns(10);
-		
-		JLabel lblNombreDelFondo = new JLabel("Nombre del Fondo:");
-		lblNombreDelFondo.setBounds(192, 36, 102, 17);
-		panelConsultaCliente.add(lblNombreDelFondo);
-		
-		JLabel label_7 = new JLabel("");
-		label_7.setBounds(459, 41, 0, 0);
-		panelConsultaCliente.add(label_7);
-		
-		tfNombreDelFondo = new JTextField();
-		tfNombreDelFondo.setBounds(296, 34, 175, 21);
-		tfNombreDelFondo.setEditable(false);
-		panelConsultaCliente.add(tfNombreDelFondo);
-		tfNombreDelFondo.setColumns(10);
-		
-		JLabel label_8 = new JLabel("");
-		label_8.setBounds(583, 41, 0, 0);
-		panelConsultaCliente.add(label_8);
-		
-		JLabel label_9 = new JLabel("");
-		label_9.setBounds(588, 41, 0, 0);
-		panelConsultaCliente.add(label_9);
-		
-		JLabel label_10 = new JLabel("");
-		label_10.setBounds(727, 41, 0, 0);
-		panelConsultaCliente.add(label_10);
-		
-		JLabel label_11 = new JLabel("");
-		label_11.setBounds(140, 67, 0, 0);
-		panelConsultaCliente.add(label_11);
-		
-		JLabel label_12 = new JLabel("");
-		label_12.setBounds(145, 67, 0, 0);
-		panelConsultaCliente.add(label_12);
-		
-		JLabel lblTasa = new JLabel("Tasa:");
-		lblTasa.setBounds(567, 38, 28, 17);
-		panelConsultaCliente.add(lblTasa);
-		
-		JLabel label_13 = new JLabel("");
-		label_13.setBounds(183, 67, 0, 0);
-		panelConsultaCliente.add(label_13);
-		
-		tfTasaDeInteres = new JTextField();
-		tfTasaDeInteres.setBounds(595, 34, 28, 21);
-		tfTasaDeInteres.setEditable(false);
-		panelConsultaCliente.add(tfTasaDeInteres);
-		tfTasaDeInteres.setColumns(10);
-		
-		JLabel lblPeriodicidadDeInters = new JLabel("Periodicidad de inter\u00E9s:");
-		lblPeriodicidadDeInters.setBounds(21, 36, 125, 17);
-		panelConsultaCliente.add(lblPeriodicidadDeInters);
-		
-		JLabel label_14 = new JLabel("");
-		label_14.setBounds(437, 67, 0, 0);
-		panelConsultaCliente.add(label_14);
-		
-		tfPeriodicidadInteres = new JTextField();
-		tfPeriodicidadInteres.setBounds(146, 34, 28, 21);
-		tfPeriodicidadInteres.setEditable(false);
-		panelConsultaCliente.add(tfPeriodicidadInteres);
-		tfPeriodicidadInteres.setColumns(10);
-		
-		JLabel label_15 = new JLabel("");
-		label_15.setBounds(561, 67, 0, 0);
-		panelConsultaCliente.add(label_15);
-		
-		JLabel label_16 = new JLabel("");
-		label_16.setBounds(566, 67, 0, 0);
-		panelConsultaCliente.add(label_16);
-		
-		JLabel label_17 = new JLabel("");
-		label_17.setBounds(571, 67, 0, 0);
-		panelConsultaCliente.add(label_17);
-		
-		JLabel label_18 = new JLabel("");
-		label_18.setBounds(576, 67, 0, 0);
-		panelConsultaCliente.add(label_18);
-		
-		JLabel label_19 = new JLabel("");
-		label_19.setBounds(581, 67, 0, 0);
-		panelConsultaCliente.add(label_19);
-		
-		JLabel label_20 = new JLabel("");
-		label_20.setBounds(586, 67, 0, 0);
-		panelConsultaCliente.add(label_20);
-		
-		JLabel label_21 = new JLabel("");
-		label_21.setBounds(591, 67, 0, 0);
-		panelConsultaCliente.add(label_21);
-		
-		JLabel lblPeriodicidadDeAmortizacin = new JLabel("Periodicidad de Amortizaci\u00F3n:");
-		lblPeriodicidadDeAmortizacin.setBounds(21, 65, 160, 17);
-		panelConsultaCliente.add(lblPeriodicidadDeAmortizacin);
-		
-		JLabel label_22 = new JLabel("");
-		label_22.setBounds(761, 67, 0, 0);
-		panelConsultaCliente.add(label_22);
-		
-		JLabel label_23 = new JLabel("");
-		label_23.setBounds(766, 67, 0, 0);
-		panelConsultaCliente.add(label_23);
-		
-		tfPeriodicidadAmortizacion = new JTextField();
-		tfPeriodicidadAmortizacion.setBounds(183, 63, 28, 21);
-		tfPeriodicidadAmortizacion.setEditable(false);
-		panelConsultaCliente.add(tfPeriodicidadAmortizacion);
-		tfPeriodicidadAmortizacion.setColumns(10);;
-		DefaultTableModel model = new DefaultTableModel();
-		
-		model.addColumn("Nombre");
-		
-		JLabel label_24 = new JLabel("");
-		label_24.setBounds(438, 93, 0, 0);
-		panelConsultaCliente.add(label_24);
-		
-		JLabel label_25 = new JLabel("");
-		label_25.setBounds(443, 93, 0, 0);
-		panelConsultaCliente.add(label_25);
-		
-		JLabel label_26 = new JLabel("");
-		label_26.setBounds(448, 93, 0, 0);
-		panelConsultaCliente.add(label_26);
-		
-		JLabel label_27 = new JLabel("");
-		label_27.setBounds(453, 93, 0, 0);
-		panelConsultaCliente.add(label_27);
-		
-		JLabel label_28 = new JLabel("");
-		label_28.setBounds(458, 93, 0, 0);
-		panelConsultaCliente.add(label_28);
-		
-		JLabel label_29 = new JLabel("");
-		label_29.setBounds(463, 93, 0, 0);
-		panelConsultaCliente.add(label_29);
-		
-		JLabel label_30 = new JLabel("");
-		label_30.setBounds(468, 93, 0, 0);
-		panelConsultaCliente.add(label_30);
-		
-		JLabel lblNumeroDeOperacion = new JLabel("Numero de Operacion");
-		lblNumeroDeOperacion.setBounds(635, 7, 121, 17);
-		panelConsultaCliente.add(lblNumeroDeOperacion);
-		
-		JList jlistOperaciones = new JList();
-		jlistOperaciones.setBounds(635, 27, 134, 50);
-		panelConsultaCliente.add(jlistOperaciones);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(12, 89, 764, 270);
-		panelConsultaCliente.add(panel);
-		panel.setLayout(new CardLayout(0, 0));
-		
-		JTabbedPane tpPestagnas = new JTabbedPane(JTabbedPane.TOP);
-		panel.add(tpPestagnas, "name_6833940426624");
-		
-		JPanel jpTablaPagos = new JPanel();
-		tpPestagnas.addTab("Tabla de Pagos", null, jpTablaPagos, null);
-		jpTablaPagos.setLayout(null);
-		
-		JScrollPane spPagos = new JScrollPane();
-		spPagos.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		spPagos.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		spPagos.setBounds(0, 0, 759, 241);
-		jpTablaPagos.add(spPagos);
-		
-		jtPagos = new JTable();
-		jtPagos.setModel(new DefaultTableModel(
+		jtOperaciones = new JTable();
+		jtOperaciones.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"Cuota", "Fecha de pago", "Amortizacion", "Intereses", "Saldo"
+				"Activa", "Numero de operacion", "Fecha de formalizacion", "Fecha de cancelacion", "Cuota", "Periodicidad de interes", "Periodicidad de amortizacion", "Saldo"
 			}
 		) {
-			private static final long serialVersionUID = 1L;
-			
 			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, Double.class, Double.class, Double.class
+				Boolean.class, String.class, String.class, String.class, Double.class, Integer.class, Integer.class, Double.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-			
 			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false
+				true, false, false, false, false, false, false, false
 			};
-			
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		});
-		jtPagos.getColumnModel().getColumn(1).setPreferredWidth(125);
-		jtPagos.getColumnModel().getColumn(2).setPreferredWidth(127);
-		jtPagos.getColumnModel().getColumn(3).setPreferredWidth(115);
-		jtPagos.getColumnModel().getColumn(4).setPreferredWidth(182);
-		spPagos.setViewportView(jtPagos);
+		jtOperaciones.getColumnModel().getColumn(1).setPreferredWidth(132);
+		jtOperaciones.getColumnModel().getColumn(2).setPreferredWidth(142);
+		jtOperaciones.getColumnModel().getColumn(3).setPreferredWidth(150);
+		jtOperaciones.getColumnModel().getColumn(4).setPreferredWidth(130);
+		jtOperaciones.getColumnModel().getColumn(5).setPreferredWidth(150);
+		jtOperaciones.getColumnModel().getColumn(6).setPreferredWidth(165);
+		jtOperaciones.getColumnModel().getColumn(7).setPreferredWidth(150);
+		scrollPane.setViewportView(jtOperaciones);
 		
-		JPanel jpRecibos = new JPanel();
-		tpPestagnas.addTab("Tabla de Recibos", null, jpRecibos, null);
-		jpRecibos.setLayout(null);
+		JPanel jpTablas = new JPanel();
+		jpTablas.setBounds(12, 124, 774, 203);
+		panelConsultaCliente.add(jpTablas);
+		jpTablas.setLayout(new CardLayout(0, 0));
 		
-		JScrollPane spRecibos = new JScrollPane();
-		spRecibos.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		spRecibos.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		spRecibos.setBounds(0, 0, 759, 241);
-		jpRecibos.add(spRecibos);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		jpTablas.add(tabbedPane, "name_2620496115606");
 		
-		jtRecibos = new JTable();
-		jtRecibos.setModel(new DefaultTableModel(
+		JPanel jpTablaDeRecibos = new JPanel();
+		tabbedPane.addTab("Tabla de recibos", null, jpTablaDeRecibos, null);
+		jpTablaDeRecibos.setLayout(new BorderLayout(0, 0));
+		
+		JScrollPane spTablaDeRecibos = new JScrollPane();
+		spTablaDeRecibos.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		spTablaDeRecibos.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		jpTablaDeRecibos.add(spTablaDeRecibos, BorderLayout.CENTER);
+		
+		jtTablaDeRecibos = new JTable();
+		jtTablaDeRecibos.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"OPD", "Cuota", "Fecha de Cuota", "Fecha de pago", "Amortizacion", "Amortizacion Pendiente", "Intereses", "Intereses pendientes", "Morosidad", "Poliza", "Tipo de pago", "Monto pagado", "Saldo"
+				"Numero de recibo", "Fecha de pago", "Numero de cuota", "Cuota", "Monto cancelado", "Interes", "Amortizacion", "Saldo restante"
 			}
 		) {
-			private static final long serialVersionUID = -99333533613230681L;
 			Class[] columnTypes = new Class[] {
-				Integer.class, Object.class, String.class, String.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Integer.class, Double.class, Double.class
+				Integer.class, String.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		jtTablaDeRecibos.getColumnModel().getColumn(0).setPreferredWidth(107);
+		jtTablaDeRecibos.getColumnModel().getColumn(1).setPreferredWidth(110);
+		jtTablaDeRecibos.getColumnModel().getColumn(2).setPreferredWidth(105);
+		jtTablaDeRecibos.getColumnModel().getColumn(3).setPreferredWidth(130);
+		jtTablaDeRecibos.getColumnModel().getColumn(4).setPreferredWidth(123);
+		jtTablaDeRecibos.getColumnModel().getColumn(5).setPreferredWidth(140);
+		jtTablaDeRecibos.getColumnModel().getColumn(6).setPreferredWidth(130);
+		jtTablaDeRecibos.getColumnModel().getColumn(7).setPreferredWidth(200);
+		spTablaDeRecibos.setViewportView(jtTablaDeRecibos);
+		
+		JPanel jpTablaDePagos = new JPanel();
+		tabbedPane.addTab("Tabla de pagos", null, jpTablaDePagos, null);
+		jpTablaDePagos.setLayout(new BorderLayout(0, 0));
+		
+		JScrollPane spTablaDePagos = new JScrollPane();
+		jpTablaDePagos.add(spTablaDePagos, BorderLayout.CENTER);
+		
+		jtTablaDePagos = new JTable();
+		jtTablaDePagos.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Numero de cuota", "Fecha de vencimiento", "Interes", "Amortizacion", "Cuota", "Saldo", "Cancelada"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Integer.class, String.class, Double.class, Double.class, Double.class, Double.class, Boolean.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
 		});
+		jtTablaDePagos.getColumnModel().getColumn(0).setPreferredWidth(110);
+		jtTablaDePagos.getColumnModel().getColumn(1).setPreferredWidth(130);
+		jtTablaDePagos.getColumnModel().getColumn(1).setMinWidth(130);
+		jtTablaDePagos.getColumnModel().getColumn(2).setPreferredWidth(130);
+		jtTablaDePagos.getColumnModel().getColumn(3).setPreferredWidth(130);
+		jtTablaDePagos.getColumnModel().getColumn(4).setPreferredWidth(130);
+		jtTablaDePagos.getColumnModel().getColumn(5).setPreferredWidth(130);
+		spTablaDePagos.setViewportView(jtTablaDePagos);
 		
-		jtRecibos.getColumnModel().getColumn(0).setPreferredWidth(52);
-		jtRecibos.getColumnModel().getColumn(1).setPreferredWidth(60);
-		jtRecibos.getColumnModel().getColumn(2).setPreferredWidth(141);
-		jtRecibos.getColumnModel().getColumn(3).setPreferredWidth(144);
-		jtRecibos.getColumnModel().getColumn(4).setPreferredWidth(114);
-		jtRecibos.getColumnModel().getColumn(5).setPreferredWidth(165);
-		jtRecibos.getColumnModel().getColumn(6).setPreferredWidth(147);
-		jtRecibos.getColumnModel().getColumn(7).setPreferredWidth(140);
-		jtRecibos.getColumnModel().getColumn(8).setPreferredWidth(118);
-		jtRecibos.getColumnModel().getColumn(9).setPreferredWidth(117);
-		jtRecibos.getColumnModel().getColumn(10).setPreferredWidth(141);
-		jtRecibos.getColumnModel().getColumn(11).setPreferredWidth(132);
-		jtRecibos.getColumnModel().getColumn(12).setPreferredWidth(170);
-		spRecibos.setViewportView(jtRecibos);
+		JPanel jpBotonera = new JPanel();
+		jpBotonera.setBounds(12, 327, 774, 44);
+		panelConsultaCliente.add(jpBotonera);
 		
-		jbAceptar = new JButton("Aceptar");
-		jbAceptar.addActionListener(this);
-		jbAceptar.setBounds(323, 60, 96, 27);
-		panelConsultaCliente.add(jbAceptar);
+		JButton btnNuevaConsulta = new JButton("Nueva Consulta");
+		btnNuevaConsulta.setToolTipText("Busca un nuevo cliente por cedula");
+		btnNuevaConsulta.addActionListener(this);
+		jpBotonera.add(btnNuevaConsulta);
 		
-	}
+		btnRegresar = new JButton("Regresar");
+		btnRegresar.setToolTipText("Retorna al menu principal");
+		btnRegresar.addActionListener(this);
+		jpBotonera.add(btnRegresar);
+		
+		btnEmitirRecibo = new JButton("Emitir recibo");
+		btnEmitirRecibo.setToolTipText("Crea un recibo/factura");
+		btnEmitirRecibo.addActionListener(this);
+		jpBotonera.add(btnEmitirRecibo);
+		
+		btnImprimirTablas = new JButton("Imprimir Tablas");
+		btnImprimirTablas.setToolTipText("Se imprimen las tablas de pago y de recibos");
+		btnImprimirTablas.addActionListener(this);
+		jpBotonera.add(btnImprimirTablas);
+		
+	}/*fin de genera ventana*/
 
+	public void LiberadorDeMemoria(){
+		panelConsultaCliente = null;
+		tfApellidoYNombre = null;
+		tfCedula = null;
+		jtOperaciones = null;
+		jtTablaDePagos = null;
+		jtTablaDeRecibos = null;
+		btnNuevaConsulta = null;
+		btnRegresar = null;
+		btnEmitirRecibo = null;
+		btnImprimirTablas = null;
+	}/*apunta todo a null para ahorrar algo de ram*/
+	
+	public void ConsultaElCliente(String Cedula){
+		/*se traen los datos nuevos de persona*/
+		tfApellidoYNombre.setText(persona.apellidoyNombre);/*nuevo nombre de persona*/
+		tfCedula.setText(persona.cedula);
+		
+	}/*fin de consulta cliente*/
 	@Override
-	public void actionPerformed(ActionEvent event) {
+	public void actionPerformed(ActionEvent evento) {
 		
+		if(evento.getSource() == btnNuevaConsulta){
+			String cedula = JOptionPane.showInputDialog("Ingrese el numero de cedula del cliente a consultar");
+			/*se envia el string a la bd*/
+			/*se carga la informacion nueva de los tf*/
+			/*se carga la informacion nueva de las tablas*/
+		}/*fin de nueva consulta*/
 		
-		if(event.getSource() == jbAceptar){
-			
+		if(evento.getSource() == btnRegresar){
 			jfPrincipal.QuitarPanel(panelConsultaCliente);
-			panelConsultaCliente = null;
-						
-		}
+			jfPrincipal.VentanaMain.setBounds(100, 100, 800, 400);
+			
+			LiberadorDeMemoria();
+			
+		}/*fin de evento regresar*/
+		
 	jfPrincipal.VentanaMain.repaint();/*actualizacion constante de la ventana*/
 	}/*fin de actionPerformed*/
 	
-}
+}/*fin de clase*/
