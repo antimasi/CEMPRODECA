@@ -16,7 +16,7 @@ public class conexionSQL {
 	
 	Connection con = null;
 	
-	public void conectar(){
+	public Connection ObtenerConexion(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver"); 
 			con = DriverManager.getConnection(URL,User,Password);
@@ -26,23 +26,12 @@ public class conexionSQL {
 	      }catch(ClassNotFoundException e){
 	         System.out.println(e);
 	      }
+		
+		return con;
 	}
 	
-	public ArrayList<TablaDePagos> DescargaTablaDePagos(){
-	System.out.println("NO ESTA DEFINIDO EL CONTENIDO DEL METODO");
-	return null;/*retorna un arraylist sacado de la db con las filas de la tabla de pagos*/
-	}/*fin de TablaDePagos entrante*/
-
-	public ArrayList<Recibos> DescargaRecibos(){
-		System.out.println("NO ESTA DEFINIDO EL CONTENIDO DEL METODO");
-	return null;/*retorna los recibos viejos de la db*/
-	}/*fin de Recibos entrantes*/
-	
-	public void CargarTablaDePagosAlaDB(){
-		
-	}/*fin de carga de tabla de pagos*/
 	
 	public void CargarRecibosAlaDB(){
-		
+		//
 	}/*fin de carga de recibos*/
 }

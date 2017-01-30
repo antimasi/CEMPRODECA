@@ -40,43 +40,4 @@ public class Recibos {
 		
 	}/*fin del relleno*/
 	
-	public void pagoSinMorosidad(double pago){
-		
-	}/*fin de pagoCompleto, se paga sin que exista morosidad*/
-	
-	public void pagoDeIntereses(double pago){
-		
-	}/*pago de interes e intereses atrasados*/
-	
-	public void pagoDeAmortizacionesPendientes(double pago){
-		this.pago = pago;
-		vuelto = pago;
-		if(vuelto >= amortizacionPendiente){
-			vuelto = amortizacionPendiente - vuelto;
-			JOptionPane.showMessageDialog(null, "Su pago fue de: "+pago+"\nSu vuelto es de: "+vuelto);
-		}else{/*falta para terminar de pagar*/
-			
-			amortizacionPendiente = vuelto - amortizacionPendiente;
-			JOptionPane.showMessageDialog(null, "Su pago fue de: "+pago+"\nSu saldo pendiente es de: "+amortizacionPendiente);
-			
-		}/*fin de pago*/
-	}/*pago de amortizacion, primero atrasada y luego se resta al saldo*/
-	
-	public void pagoAlSaldo(double pago){/*se reduce el saldo directamente, requiere recalcular la tabla de pagos*/
-		this.pago = pago;
-		vuelto = pago;
-		if(vuelto >= saldo){
-			vuelto -= saldo;
-			if(vuelto >= 0){
-				saldo = 0;
-			}else{
-				saldo = saldo - vuelto;
-			}
-			JOptionPane.showMessageDialog(null, "Su cambio es de: "+vuelto+"\nSu saldo queda en "+saldo);
-		}else{
-			
-			JOptionPane.showMessageDialog(null, "");
-		}
-	}
-	
 }/*fin de clase*/
